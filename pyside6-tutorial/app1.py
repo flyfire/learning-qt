@@ -214,6 +214,54 @@ def test6():
     app.exec()
 
 
+class MainWindow7(QMainWindow):
+    def __init__(self):
+        super(MainWindow7, self).__init__()
+        self.show()
+        self.setContextMenuPolicy(PySide6.QtCore.Qt.CustomContextMenu)
+        self.customContextMenuRequested.connect(self.on_context_menu)
+
+    def on_context_menu(self, pos):
+        context = QMenu(self)
+        context.addAction(PySide6.QtGui.QAction('test 1', self))
+        context.addAction(PySide6.QtGui.QAction('test 2', self))
+        context.addAction(PySide6.QtGui.QAction('test 3', self))
+        context.exec(self.mapToGlobal(pos))
+
+
+def test7():
+    app = QApplication([])
+    window = MainWindow7()
+    app.exec()
+
+
+class MainWindow8(QMainWindow):
+    def __init__(self):
+        super(MainWindow8, self).__init__()
+        self.show()
+
+    def mousePressEvent(self, event) -> None:
+        print('Mouse Pressed!')
+        super(self, MainWindow8).contextMenuEvent(event) # error
+
+
+def test8():
+    app = QApplication([])
+    window = MainWindow8()
+    app.exec()
+
+
+class CustomButton0(QPushButton):
+    def mousePressEvent(self, e: PySide6.QtGui.QMouseEvent) -> None:
+        e.accept()
+
+
+class CustomButton1(QPushButton):
+    def event(self, e: PySide6.QtCore.QEvent) -> bool:
+        e.ignore()
+        return True
+
+
 if __name__ == '__main__':
     # test0()
     # test1()
@@ -221,4 +269,6 @@ if __name__ == '__main__':
     # test3()
     # test4()
     # test5()
-    test6()
+    # test6()
+    # test7()
+    test8()
