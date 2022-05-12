@@ -1,8 +1,30 @@
 from PySide6.QtWidgets import (
     QApplication,
     QMainWindow,
-    QPushButton
+    QPushButton,
+    QDialog,
+    QDialogButtonBox,
+    QVBoxLayout,
+    QLabel
 )
+
+
+class CustomDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle('hello')
+        buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+
+        self.buttonBox = QDialogButtonBox(buttons)
+        self.buttonBox.accepted.connect(self.accept)
+        self.buttonBox.rejected.connect(self.reject)
+
+        self.layout = QVBoxLayout()
+        message = QLabel('Something happened, is that OK?')
+        self.layout.addWidget(message)
+        self.layout.addWidget(self.buttonBox)
+        self.setLayout(self.layout)
+
 
 class DialogWindow0(QMainWindow):
     def __init__(self):
@@ -14,6 +36,14 @@ class DialogWindow0(QMainWindow):
 
     def button_clicked(self, s):
         print('click', s)
+        # dlg = QDialog(self)
+        # dlg.setWindowTitle('Hello!')
+        # dlg.exec()
+        dlg = CustomDialog(self)
+        if dlg.exec():
+            print('success!')
+        else:
+            print('cancel!')
 
 
 def get_window(seq: int):
