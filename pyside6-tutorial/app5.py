@@ -5,7 +5,8 @@ from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
     QVBoxLayout,
-    QLabel
+    QLabel,
+    QMessageBox
 )
 
 
@@ -46,10 +47,36 @@ class DialogWindow0(QMainWindow):
             print('cancel!')
 
 
+class DialogWindow1(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('My App')
+        button = QPushButton('Press me for a dialog!')
+        button.clicked.connect(self.button_clicked)
+        self.setCentralWidget(button)
+
+    def button_clicked(self, s):
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle('I have a question')
+        dlg.setText('this is a simple dialog')
+        # button = dlg.exec()
+        # if button == QMessageBox.Ok:
+        #     print('OK')
+        dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        dlg.setIcon(QMessageBox.Question)
+        button = dlg.exec()
+        if button == QMessageBox.Yes:
+            print('Yes')
+        else:
+            print('No')
+
+
 def get_window(seq: int):
     window = None
     if seq == 0:
         window = DialogWindow0()
+    elif seq == 1:
+        window = DialogWindow1()
     return window
 
 
@@ -61,4 +88,4 @@ def test(seq: int):
 
 
 if __name__ == '__main__':
-    test(0)
+    test(1)
