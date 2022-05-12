@@ -199,9 +199,9 @@ class MainWindow8(QMainWindow):
         super(MainWindow8, self).__init__()
         self.setWindowTitle('My App')
         widget = QSlider(Qt.Vertical)
-        widget.setMinimum(0)
-        widget.setMaximum(10)
-        widget.setSingleStep(1)
+        # widget.setMinimum(0)
+        # widget.setMaximum(10)
+        # widget.setSingleStep(1)
         widget.valueChanged.connect(self.value_changed)
         widget.sliderMoved.connect(self.slider_position)
         widget.sliderPressed.connect(self.slider_pressed)
@@ -252,4 +252,4 @@ def test(seq: int):
 
 
 if __name__ == '__main__':
-    test(0)
+    test(8)
