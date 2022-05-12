@@ -94,6 +94,37 @@ class MainWindow2(QMainWindow):
         self.setCentralWidget(widget)
 
 
+class MainWindow3(QMainWindow):
+    def __init__(self):
+        super(MainWindow3, self).__init__()
+        self.setWindowTitle('My App')
+        widget = QCheckBox()
+        widget.setCheckState(Qt.Checked)
+        widget.stateChanged.connect(self.show_state)
+        self.setCentralWidget(widget)
+
+    def show_state(self, s):
+        print(s)
+        print(s == Qt.Checked)
+
+
+class MainWindow4(QMainWindow):
+    def __init__(self):
+        super(MainWindow4, self).__init__()
+        self.setWindowTitle('My App')
+        widget = QComboBox()
+        widget.addItems(['One', 'Two', 'Three'])
+        widget.currentIndexChanged.connect(self.index_changed)
+        widget.currentTextChanged.connect(self.text_changed)
+        self.setCentralWidget(widget)
+
+    def index_changed(self, i):
+        print('index changed', i)
+
+    def text_changed(self, s):
+        print('text changed', s)
+
+
 def get_window(seq: int):
     window = None
     if seq == 0:
@@ -102,6 +133,10 @@ def get_window(seq: int):
         window = MainWindow1()
     elif seq == 2:
         window = MainWindow2()
+    elif seq == 3:
+        window = MainWindow3()
+    elif seq == 4:
+        window = MainWindow4()
     return window
 
 
@@ -113,4 +148,4 @@ def test(seq: int):
 
 
 if __name__ == '__main__':
-    test(2)
+    test(4)
