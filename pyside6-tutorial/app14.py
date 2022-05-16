@@ -1,6 +1,10 @@
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt
 import PySide6
+import random
+
+SPRAY_PARTICLES = 100
+SPRAY_DIAMETER = 10
 
 
 class Canvas(QtWidgets.QLabel):
@@ -26,7 +30,11 @@ class Canvas(QtWidgets.QLabel):
         p.setWidth(4)
         p.setColor(self.pen_color)
         painter.setPen(p)
-        painter.drawLine(self.last_x, self.last_y, ev.x(), ev.y())
+        # painter.drawLine(self.last_x, self.last_y, ev.x(), ev.y())
+        for n in range(SPRAY_PARTICLES):
+            xo = random.gauss(0, SPRAY_DIAMETER)
+            yo = random.gauss(0, SPRAY_DIAMETER)
+            painter.drawPoint(int(ev.x() + xo), int(ev.y() + yo))
         painter.end()
         self.setPixmap(canvas)
 
