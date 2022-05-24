@@ -2,7 +2,7 @@ from PySide6.QtMultimedia import QAudio, QAudioOutput, QMediaFormat, QMediaPlaye
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import QLabel, QMainWindow, QApplication, QVBoxLayout, QPushButton, QWidget
 from PySide6.QtGui import QImage, QPixmap
-from PySide6.QtCore import QThread, QUrl, Signal, QRunnable, QThreadPool, QObject
+from PySide6.QtCore import QThread, QUrl, Signal, QRunnable, QThreadPool, QObject, Qt
 from PySide6.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
 
 
@@ -26,7 +26,7 @@ class MediaWindow(QMainWindow):
         self._label2.resize(400, 400)
         layout.addWidget(self._label2)
         self._videoview = QVideoWidget()
-        self._videoview.resize(500, 500)
+        self._videoview.setAspectRatioMode(Qt.AspectRatioMode.KeepAspectRatio)
         layout.addWidget(self._videoview)
         btn1 = QPushButton("load local image")
         layout.addWidget(btn1)
