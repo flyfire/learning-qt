@@ -16,6 +16,7 @@ class VideoWindow(QWidget, Ui_Video_UI):
         self.play_pause.clicked.connect(self.play_pause_video)
         self.previous.clicked.connect(self.play_network_video)
         self.media_player.mediaStatusChanged.connect(self.on_state_changed)
+        self.media_player.positionChanged.connect(self.on_position_changed)
 
     def play_pause_video(self):
         url = QUrl.fromLocalFile("/Volumes/share/虚拟内容生产/测试/5min访谈测试/拆分成品/音乐mv/0316批次/1.mp4")
@@ -32,6 +33,9 @@ class VideoWindow(QWidget, Ui_Video_UI):
     def on_state_changed(self, status):
         if status == QMediaPlayer.EndOfMedia:
             self.play_network_video()
+
+    def on_position_changed(self, position):
+        self.lcdNumber.display(round(position / 1000))
 
 
 def test():
