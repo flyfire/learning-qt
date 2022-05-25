@@ -1,0 +1,17 @@
+[
+  {
+    "t": "intro_1",
+    "title": "hello",
+    "subtitle": "world",
+    "video_path": "/Volumes/share/虚拟内容生产/测试/5min访谈测试/拆分成品/音乐mv/0316批次/1.mp4"
+  },
+  {
+    "t": "countdown",
+    "explain_1": "这是第一条讲解",
+    "explain_2": "这是第二条讲解",
+    "count_down": 10
+  },
+  {
+    "t": "result"
+  }
+]
