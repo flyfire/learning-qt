@@ -31,6 +31,9 @@ class VideoWidget(QWidget):
     def showEvent(self, event: PySide6.QtGui.QShowEvent) -> None:
         self.media_player.play()
 
+    def closeEvent(self, event: PySide6.QtGui.QCloseEvent) -> None:
+        self.media_player.stop()
+
 
 def test():
     app = QApplication([])
