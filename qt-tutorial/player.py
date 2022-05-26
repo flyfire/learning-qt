@@ -77,5 +77,12 @@ def test():
     app.exec()
 
 
+def test_format():
+    result = get_supported_mime_types()
+    for type in result:
+        print(type)
+
+
 if __name__ == '__main__':
-    test()
+    # test()
+    test_format()
